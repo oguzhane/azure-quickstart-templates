@@ -99,11 +99,7 @@
                     }
                 ]
             },
-            "provisionVMAgent": true,
-            "patchSettings": {
-                "patchMode": "ImageDefault",
-                "assessmentMode": "ImageDefault"
-            }
+            "provisionVMAgent": true
         }
     },
     "resources": [
