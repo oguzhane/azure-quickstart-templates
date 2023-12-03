@@ -98,6 +98,11 @@
                         "keyData": "[parameters('adminPasswordOrKey')]"
                     }
                 ]
+            },
+            "provisionVMAgent": true,
+            "patchSettings": {
+                "patchMode": "ImageDefault",
+                "assessmentMode": "ImageDefault"
             }
         }
     },
@@ -225,7 +230,7 @@
                     "vmSize": "[parameters('vmSize')]"
                 },
                 "osProfile": {
-                    "computerName": "[concat('vm', copyIndex())]",
+                    "computerName": "[concat('node', copyIndex())]",
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPasswordOrKey')]",
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]"
