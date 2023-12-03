@@ -266,7 +266,10 @@
                         "settings": {
                             "GCS_AUTO_CONFIG": true
                         }
-                    }
+                    },
+                    "dependsOn": [
+                        "[concat('Microsoft.Compute/virtualMachines/', concat('node', copyIndex()))]"
+                    ]
                 },
                 {
                     "type": "Microsoft.Compute/virtualMachines/extensions",
@@ -286,7 +289,10 @@
                             "numberOfProbes": 1,
                             "gracePeriod": 600
                         }
-                    }
+                    },
+                    "dependsOn": [
+                        "[concat('Microsoft.Compute/virtualMachines/', concat('node', copyIndex()))]"
+                    ]
                 }
             ]
         }
