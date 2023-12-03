@@ -233,6 +233,8 @@
                     "computerName": "[concat('node', copyIndex())]",
                     "adminUsername": "[parameters('adminUsername')]",
                     "adminPassword": "[parameters('adminPasswordOrKey')]",
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true,
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]"
                 },
                 "storageProfile": {
@@ -248,7 +250,45 @@
                         }
                     ]
                 }
-            }
+            },
+            "resources": [
+                {
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "name": "AzureMonitorLinuxAgent",
+                    "apiVersion": "2021-04-01",
+                    "location": "[parameters('location')]",
+                    "properties": {
+                        "autoUpgradeMinorVersion": true,
+                        "enableAutomaticUpgrade": true,
+                        "publisher": "Microsoft.Azure.Monitor",
+                        "type": "AzureMonitorLinuxAgent",
+                        "typeHandlerVersion": "1.0",
+                        "settings": {
+                            "GCS_AUTO_CONFIG": true
+                        }
+                    }
+                },
+                {
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "name": "ApplicationHealthLinux",
+                    "apiVersion": "2021-04-01",
+                    "location": "[parameters('location')]",
+                    "properties": {
+                        "autoUpgradeMinorVersion": true,
+                        "publisher": "Microsoft.ManagedServices",
+                        "type": "ApplicationHealthLinux",
+                        "typeHandlerVersion": "2.0",
+                        "settings": {
+                            "protocol": "http",
+                            "port": 8181,
+                            "requestPath": "/probe",
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 1,
+                            "gracePeriod": 600
+                        }
+                    }
+                }
+            ]
         }
     ]
 }
