@@ -206,7 +206,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat('myvm', copyIndex())]",
+            "name": "[concat('node', copyIndex())]",
             "apiVersion": "2020-06-01",
             "location": "[parameters('location')]",
             "copy": {
