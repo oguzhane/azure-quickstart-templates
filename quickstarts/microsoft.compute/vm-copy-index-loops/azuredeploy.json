@@ -253,7 +253,7 @@
             },
             "resources": [
                 {
-                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "type": "extensions",
                     "name": "AzureMonitorLinuxAgent",
                     "apiVersion": "2021-04-01",
                     "location": "[parameters('location')]",
@@ -272,7 +272,7 @@
                     ]
                 },
                 {
-                    "type": "Microsoft.Compute/virtualMachines/extensions",
+                    "type": "extensions",
                     "name": "ApplicationHealthLinux",
                     "apiVersion": "2021-04-01",
                     "location": "[parameters('location')]",
