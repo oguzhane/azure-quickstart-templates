@@ -99,7 +99,10 @@
                     }
                 ]
             },
-            "provisionVMAgent": true
+            "provisionVMAgent": true,
+            "patchSettings": {
+                "patchMode": "AutomaticByPlatform"
+            }
         }
     },
     "resources": [
